@@ -6,7 +6,7 @@ import {Component} from "angular2/core";
         <div class="autoComp">
             <input [type]="type" [(ngModel)]="theValue" (ngModelChange)="onChange($event)">
             <div class="autoComp-data-wrapper">
-                <div class="autoComp-item" *ngFor="#d of foundData">
+                <div class="autoComp-item" *ngFor="#d of foundData" (click)="onSelect(d)">
                     {{d}}
                 </div>
             </div>
@@ -74,12 +74,23 @@ export class AutoCompComponent {
     public foundData: any = [];
 
     onChange(event) {
-        // Clear the foundData when data changes
-        this.foundData = [];
-        // When working with arrays
-        this.queryArray(event);
+        this.foundData = [];                                        // Clear the foundData when data changes
+        this.queryArray(event);                                     // When working with arrays
     }
 
+    onSelect(item) {
+        this.foundData = [];
+        this.theValue = item;
+    }
+
+    queryArray(event) {
+        if(event.length >= this.minLength) {
+            this.data.forEach(a=> {
+                if(this.contains && a.search(event) > -1) this.foundData.push(a);
+                else if(!this.contains && a.search(event) == 0) this.foundData.push(a);
+            })
+        }
+    }
 
     // Attach all the changes received in the options object
     attachChanges() {
@@ -110,15 +121,4 @@ export class AutoCompComponent {
             }
         })
     }
-
-
-    queryArray(event) {
-        if(event.length >= this.minLength) {
-            this.data.forEach(a=> {
-                if(this.contains && a.search(event) > -1) this.foundData.push(a);
-                else if(!this.contains && a.search(event) == 0) this.foundData.push(a);
-            })
-        }
-    }
-
 }
