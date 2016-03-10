@@ -45,7 +45,11 @@ export class AutoCompComponent {
 
     ngOnInit() {
         this.attachChanges();
+        if(this.initialValue) this.theValue = this.initialValue;
         this.isArray = typeof this.data[0] != 'object';
+
+        console.log('init values: ', this.minLength);
+        console.log('init values: ', this.contains);
     }
 
     // Outputs
@@ -54,9 +58,13 @@ export class AutoCompComponent {
     private options: any;
     private data: any;
     private minLength: number = 2;
-    private searchBy: any;
+    private contains: boolean = false;
 
     public type: string = 'text';
+    public initialValue: any;
+
+    // When working with objects
+    private searchBy: any;
 
 
     // Locals
@@ -68,12 +76,8 @@ export class AutoCompComponent {
     onChange(event) {
         // Clear the foundData when data changes
         this.foundData = [];
-        if(event.length > this.minLength) {
-            this.data.forEach(a=> {
-                console.log(a.search(event));
-                if(a.search(event) > -1) this.foundData.push(a);
-            })
-        }
+        // When working with arrays
+        this.queryArray(event);
     }
 
 
@@ -94,11 +98,27 @@ export class AutoCompComponent {
                 case 'type':
                     this.type = this.options.type;
                     break;
+                case 'contains':
+                    this.contains = this.options.contains;
+                    break;
+                case 'initialValue':
+                    this.initialValue = this.options.initialValue;
+                    break;
                 default:
                     console.error("You have added an object to the options object that isn't supported.");
                     break;
             }
         })
+    }
+
+
+    queryArray(event) {
+        if(event.length >= this.minLength) {
+            this.data.forEach(a=> {
+                if(this.contains && a.search(event) > -1) this.foundData.push(a);
+                else if(!this.contains && a.search(event) == 0) this.foundData.push(a);
+            })
+        }
     }
 
 }

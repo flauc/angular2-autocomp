@@ -16,7 +16,8 @@ export class AppComponent {
 
     public options = {
         minLength: 1,
-        data: ['psa', 'mar', 'afas', 'asf', 'arw', 'asdcyx' , 'wepš', 'pero', 'filip', 'flop', 'klop']
+        data: ['psa', 'mar', 'afas', 'asf', 'arw', 'asdcyx' , 'wepš', 'pero', 'filip', 'flop', 'klop'],
+        initialValue: 'ps'
     }
 
 }

@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "removeComments": true,
     "sourceMap": true,
-    "outDir": "./lib",
+    "outDir": "./example/node_modules/angular2-autocomp/lib",
     "declaration": true
   },
   "exclude": [
