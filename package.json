@@ -1,0 +1,31 @@
+{
+  "name": "angular2-autocomp",
+  "version": "0.0.1",
+  "description": "angular2-autocomp is a lightweight autocomplete library for Angular 2",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flauc/angular2-autocomp.git"
+  },
+  "keywords": [
+    "Angular 2",
+    "Angular",
+    "2",
+    "Library",
+    "Autocomplete"
+  ],
+  "author": "filip.lauc93@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flauc/angular2-autocomp/issues"
+  },
+  "homepage": "ttps://github.com/flauc/angular2-autocomp",
+  "devDependencies": {
+    "typescript": "^1.7.5"
+  },
+  "dependencies": {
+    "angular2": "^2.0.0-beta.9"
+  }
+}

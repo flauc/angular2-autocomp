@@ -1,0 +1,1 @@
+exports.AutoCompComponent = require('./lib/autoComp.component').AutoCompComponent;
