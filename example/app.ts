@@ -15,8 +15,8 @@ import {AutoCompComponent} from "angular2-autocomp/components";
 export class AppComponent {
 
     public options = {
-        minLength: 3,
-        data: [{type:'12'}, 'psa', 'mar', 'afas', 'asf', 'arw', 'asdcyx' , 'wepš', 'pero', 'filip', 'flop', 'klop']
+        minLength: 1,
+        data: ['psa', 'mar', 'afas', 'asf', 'arw', 'asdcyx' , 'wepš', 'pero', 'filip', 'flop', 'klop']
     }
 
 }

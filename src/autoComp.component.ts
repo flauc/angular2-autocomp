@@ -6,7 +6,9 @@ import {Component} from "angular2/core";
         <div class="autoComp">
             <input [type]="type" [(ngModel)]="theValue" (ngModelChange)="onChange($event)">
             <div class="autoComp-data-wrapper">
-
+                <div class="autoComp-item" *ngFor="#d of foundData">
+                    {{d}}
+                </div>
             </div>
         </div>
     `,
@@ -17,12 +19,24 @@ import {Component} from "angular2/core";
             width: 100%;
         }
 
+        .autoComp input {
+            width: 100%;
+            float: left;
+        }
+
         .autoComp-data-wrapper {
             position: absolute;
-            top: 100%
+            top: 100%;
+            width: 100%;
+            height: 200px;
             left: 0;
-            opacity: 0;
+            opacity: 1;
             background: #f5f5f5;
+        }
+
+        .autoComp-item {
+            width: 100%;
+            float: left;
         }
     `]
 })
@@ -38,10 +52,10 @@ export class AutoCompComponent {
 
     // Inputs
     private options: any;
+    private data: any;
     private minLength: number = 2;
     private searchBy: any;
 
-    public data: any;
     public type: string = 'text';
 
 
@@ -49,10 +63,16 @@ export class AutoCompComponent {
     private isArray: boolean;
 
     public theValue: any;
+    public foundData: any = [];
 
     onChange(event) {
+        // Clear the foundData when data changes
+        this.foundData = [];
         if(event.length > this.minLength) {
-
+            this.data.forEach(a=> {
+                console.log(a.search(event));
+                if(a.search(event) > -1) this.foundData.push(a);
+            })
         }
     }
 
